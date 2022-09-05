@@ -8,6 +8,7 @@ const registerService = async ({
   email,
   password,
   status,
+  avatar,
 }) => {
   //   Hash password
   const salt = await bcrypt.genSalt(10);
@@ -20,6 +21,7 @@ const registerService = async ({
     email,
     password: hashedPassword,
     status,
+    avatar,
   });
 };
 

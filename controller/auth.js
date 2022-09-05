@@ -4,8 +4,9 @@ const { registerService } = require("../service/auth");
 const generateToken = require("../service/token");
 
 const register = async (req, res) => {
-  const { firstName, lastName, userName, email, password, status } = req.body;
-  if (!firstName || !lastName || !userName || !email || !password) {
+  const { filename } = req.file;
+  const { firstName, lastName, email, password, status } = req.body;
+  if (!firstName || !lastName || !email || !password) {
     return res.status(400).json({ message: "Invalid Data" });
   }
 
@@ -14,15 +15,17 @@ const register = async (req, res) => {
     const userExists = await User.findOne({ email });
 
     if (userExists) {
-      res.status(400).json({ message: "user already exits" });
+      return res.status(400).json({ message: "user already exits" });
     }
 
     const user = await registerService({
       firstName,
       lastName,
-      userName,
+      userName: `${firstName} ${lastName}`,
       email,
+      password,
       status,
+      avatar: filename,
     });
 
     return res.status(201).json({
@@ -54,10 +57,15 @@ const login = async (req, res) => {
     userName: user.userName,
     email: user.email,
     status: user.status,
+    avatar: user.avatar,
   };
 
   if (user && (await bcrypt.compare(password, user.password))) {
-    res.json({ ...userData, token: generateToken(user._id) });
+    res.json({
+      message: "Login Successful!",
+      user: userData,
+      token: generateToken(user._id),
+    });
   } else {
     res.status(400).json({ message: "Invalid Password" });
   }

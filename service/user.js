@@ -7,6 +7,7 @@ const createNewUser = ({
   email,
   password,
   status,
+  avatar,
 }) => {
   const user = new User({
     firstName,
@@ -15,6 +16,7 @@ const createNewUser = ({
     email,
     password,
     status,
+    avatar,
   });
   return user.save();
 };
