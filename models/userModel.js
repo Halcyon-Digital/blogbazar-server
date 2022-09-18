@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const userSchema = mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
@@ -42,10 +42,10 @@ const userSchema = mongoose.Schema(
       enum: ["active", "inactive"],
       default: "active",
     },
-    todos: [
+    blogs: [
       {
         type: mongoose.Types.ObjectId,
-        ref: "Todo",
+        ref: "User",
       },
     ],
   },
