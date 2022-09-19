@@ -28,9 +28,17 @@ const register = async (req, res) => {
       avatar: filename,
     });
 
+    const userData = {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      userName: user.userName,
+      email: user.email,
+      status: user.status,
+      avatar: user.avatar,
+    };
+
     return res.status(201).json({
-      message: "User Created Successfully",
-      user,
+      ...userData,
       token: generateToken(user._id),
     });
   } catch (error) {
@@ -62,8 +70,7 @@ const login = async (req, res) => {
 
   if (user && (await bcrypt.compare(password, user.password))) {
     res.json({
-      message: "Login Successful!",
-      user: userData,
+      ...userData,
       token: generateToken(user._id),
     });
   } else {

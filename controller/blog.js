@@ -67,6 +67,7 @@ const createLike = async (req, res) => {
     const findBlog = await Blog.findById({ _id: blogId });
 
     const expireUserId = findBlog.likes.includes(userId);
+
     if (expireUserId) {
       return res.status(400).json({ message: "Already Liked!" });
     }

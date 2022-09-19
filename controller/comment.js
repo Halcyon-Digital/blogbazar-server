@@ -20,7 +20,7 @@ const createComments = async (req, res) => {
       }
     );
 
-    res.status(201).json({ message: "success" });
+    res.status(201).json({ message: "Your comment sent success" });
   } catch (error) {
     console.log(error);
   }
