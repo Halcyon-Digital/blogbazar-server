@@ -27,7 +27,7 @@ router.post("/create", protect, uploadImage, createBlog);
 // @desc    Create Like
 // @route   PUT /api/v1/blogs/like/:blogId
 // @access  Private
-router.patch("/like/:blogId", protect, createLike);
+router.put("/like/:blogId", protect, createLike);
 
 // @desc    Delete Blog
 // @route   POST /api/v1/blogs/:userId

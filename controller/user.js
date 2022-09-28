@@ -1,7 +1,10 @@
 const User = require("../models/userModel");
 
 const getMe = async (req, res) => {
-  res.status(200).json(req.user);
+  const data = await User.findById({
+    _id: req.user._id,
+  }).populate("blogs");
+  res.status(200).json(data);
 };
 
 const allUsers = async (_req, res) => {
