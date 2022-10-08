@@ -16,6 +16,9 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
+app.get("/", (req, res) => {
+  res.json({ m: "server Open" });
+});
 app.use(routes);
 
 // Get all Media
@@ -27,6 +30,6 @@ app.use(notFoundHandler);
 // common error handler
 app.use(errorHandler);
 
-app.listen(/* PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server Listening on http://localhost:${PORT}`);
-} */);
+});
