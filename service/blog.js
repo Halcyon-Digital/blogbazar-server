@@ -1,7 +1,21 @@
 const Blog = require("../models/blogModel");
 
-const createNewBlog = ({ title, description, user, image }) => {
-  const blog = new Blog({ title, description, user, image });
+const createNewBlog = ({
+  title,
+  description,
+  sortDescription,
+  user,
+  tags,
+  image,
+}) => {
+  const blog = new Blog({
+    title,
+    description,
+    sortDescription,
+    user,
+    tags,
+    image,
+  });
 
   return blog.save();
 };

@@ -7,17 +7,20 @@ const User = require("../models/userModel");
 const Blog = require("../models/blogModel");
 
 const createBlog = async (req, res) => {
-  const { title, description } = req.body;
+  const { title, description, sortDescription, tags } = req.body;
   const { filename } = req.file;
 
-  if (!title || !description || !filename) {
+  if (!title || !description || !filename || !sortDescription) {
     return res.status(400).json({ message: "Invalid Data!" });
   }
+
   try {
     const newBlog = await createNewBlog({
       title,
       description,
+      sortDescription,
       user: req.userId,
+      tags,
       image: filename,
     });
 

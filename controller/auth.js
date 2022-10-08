@@ -6,6 +6,7 @@ const generateToken = require("../service/token");
 const register = async (req, res) => {
   const { filename } = req.file;
   const { firstName, lastName, email, password, status } = req.body;
+
   if (!firstName || !lastName || !email || !password) {
     return res.status(400).json({ message: "Invalid Data" });
   }

@@ -11,11 +11,16 @@ const blogModel = new mongoose.Schema(
       required: [true, "Description is required."],
       minlength: 80,
     },
+    sortDescription: {
+      type: String,
+      required: [true, "Sort Description is required."],
+      minlength: 40,
+    },
     image: {
       type: String,
       required: [true, "Please add an image."],
     },
-    tags: Array,
+    tags: String,
     user: {
       type: mongoose.Types.ObjectId,
       ref: "User",
