@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.get("/", (req, res) => {
-  res.json({ m: "server Open" });
+  res.json({ message : "server Open" });
 });
 app.use(routes);
 
